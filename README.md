@@ -1,1 +1,1 @@
-# Numerical_Method_of_Superconductor
+# Numerical Method of Superconductor -- Local Density of States
