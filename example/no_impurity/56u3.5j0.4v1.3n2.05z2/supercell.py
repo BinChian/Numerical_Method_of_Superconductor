@@ -12,7 +12,6 @@ setting = nmsldos.parameter(filename = '56u3.5j0.4v1.3n2.05z2')
 setting.size_parameter(nx = 56, ny = 56, nz = 2)
 setting.hopping_parameter(t1 = 1.00, t2 = -0.08, t3 = -1.35, t4 = 0.12, t5 = -0.09, t6 = -0.25, orbit_rotate = 90)
 setting.potential_parameter(mu = 3.680, u  = 3.500, jh = 0.400, v = 1.300)
-# setting.potential_parameter(mu = -0.8, u  = 0, jh = 0, v = 1.300) # m0
 
 lattice = nmsldos.lattice(setting)
 lattice.lattice_square()
@@ -55,5 +54,6 @@ for kx in range(mx):
 progress.close()
 rho = rho/msite*(0.25/T)
 
-with h5py.File('LDOS_' + setting.filename + '_T=' + str(T) + '.h5', 'w') as f:
-    f.create_dataset('rho', data = rho)
+with h5py.File(setting.filename + '.h5', 'a') as f:
+    grp_LDOS = f.create_group('LDOS')
+    grp_LDOS.create_dataset('rho', data = rho)

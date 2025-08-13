@@ -9,9 +9,9 @@ class readfile():
         if file_exist:
             df = h5py.File(self.filename + ".h5", "r")
 
-            pair_digArray = np.array(df['pair_dig'])
-            S_pz = np.array(df['S_pz'])
-            S_mz = np.array(df['S_mz'])
+            pair_digArray = np.array(df['pair']['pair_dig'])
+            S_pz = np.array(df['density wave']['S_pz'])
+            S_mz = np.array(df['density wave']['S_mz'])
 
             pair = np.diag(pair_digArray)
         else:
@@ -29,10 +29,10 @@ class readfile():
         if file_exist:
             df = h5py.File(self.filename + ".h5", "r")
 
-            pair_px = np.array(df['pair_px'])
-            pair_py = np.array(df['pair_py'])
-            S_pz = np.array(df['S_pz'])
-            S_mz = np.array(df['S_mz'])
+            pair_px = np.array(df['pair']['pair_px'])
+            pair_py = np.array(df['pair']['pair_py'])
+            S_pz = np.array(df['density wave']['S_pz'])
+            S_mz = np.array(df['density wave']['S_mz'])
 
             pair = np.zeros((setting.tsite, setting.tsite))
             for i in range(setting.tsite):
@@ -61,10 +61,10 @@ class readfile():
         if file_exist:
             df = h5py.File(self.filename + ".h5", "r")
 
-            pair_pxpy = np.array(df['pair_pxpy'])
-            pair_pxmy = np.array(df['pair_pxmy'])
-            S_pz = np.array(df['S_pz'])
-            S_mz = np.array(df['S_mz'])
+            pair_pxpy = np.array(df['pair']['pair_pxpy'])
+            pair_pxmy = np.array(df['pair']['pair_pxmy'])
+            S_pz = np.array(df['density wave']['S_pz'])
+            S_mz = np.array(df['density wave']['S_mz'])
 
             pair = np.zeros((setting.tsite, setting.tsite))
             for i in range(setting.tsite):

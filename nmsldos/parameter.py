@@ -1,9 +1,23 @@
 import sys
+import os
+import h5py
 
 class parameter():
     def __init__(self, filename):
         self.imp_numbers = 0
         self.filename = filename
+        
+    def read_parameter(self):
+        if os.path.exists(self.filename + '.h5'):
+            print('read file ' + self.filename + '.h5 parameter.')
+            with h5py.File(self.filename + '.h5', 'r') as f:
+                for key, value in f['parameter'].items():
+                    if value.dtype.kind == 'O':
+                        self.__dict__[key] = value[()].decode('utf-8')
+                        print(str(key) + ': ' + str(self.__dict__[key]))
+                    else:
+                        self.__dict__[key] = value[()]
+                        print(str(key) + ': ' + str(self.__dict__[key]))
         
     def size_parameter(self, nx, ny, nz = 1, ns = 1):
         self.nx = nx
